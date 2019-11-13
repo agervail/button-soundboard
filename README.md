@@ -1,50 +1,41 @@
 # button-soundboard
-On ubuntu
 
-lsblk to find the name of the sd card
-then
+## Prepare the raspberry sdcard
+Tested on ubuntu
 
-mount /dev/mmcblk0p1
-mount /dev/mmcblk0p2
+`lsblk` to find the name of the sd card, then unmount partitions if any:
+`umount /dev/mmcblk0p1`
+`umount /dev/mmcblk0p2`
 
-Copy the image onto the sdcard
+Copy the raspbian image into the sdcard:
+`sudo dd bs=8M if=2019-09-26-raspbian-buster-lite.img of=/dev/mmcblk0 conv=fsync`
 
-sudo dd bs=8M if=2019-09-26-raspbian-buster-lite.img of=/dev/mmcblk0 conv=fsync
+To enable the ssh-server you need to add a file on the sd-card in the boot partition. It needs to be a file named ssh:
+(in boot partition) `touch ssh`
 
-To enable the ssh-server you need to add a file on the sd-card in the boot partition.
-It needs to be a file named ssh
-touch /media/yocto/boot/ssh
-
-
-Find you IP (local) here it is 192.168.0.* sometimes it's 192.168.1.*
+Find you IP (local) here it is 192.168.0.XXX sometimes it's 192.168.1.XXX
 
 Launch that command before and after you connect the raspi to the network
-sudo nmap -sP 192.168.0.0/24 | awk '/^Nmap/{ip=$NF}/B8:27:EB/{print ip}'
+`sudo nmap -sP 192.168.0.0/24 | awk '/^Nmap/{ip=$NF}/B8:27:EB/{print ip}'`
 
 Find the new IP, congrats, it's your raspi !
 
-ssh pi@192.168.0.99
-password =>
-raspberry
+## Install the soundboard on the raspberry
+`ssh pi@192.168.0.XXX`
+password => raspberry
 
-update password: passwd raspberry
+Update password:
+`passwd pi`
 
+Install dependencies:
+`sudo apt update`
+`sudo apt install git python3-rpi.gpio python3-pygame`
 
-sudo apt-get install python-rpi.gpio python3-rpi.gpio
+Clone this repository
 
+Tell Raspbian to look at "card #1" for the default audio. Card #0 is the built in audio, so this is fairly straightforward.
+`sudo nano /usr/share/alsa/alsa.conf` and look for the following two lines:
+defaults.ctl.card 0
+defaults.pcm.card 0
 
-import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
-
-
-def button_callback(channel):
-    print("Button was pushed!")
-
-
-GPIO.setwarnings(False) # Ignore warning for now
-GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
-GPIO.setup(10, GPIO.IN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
-GPIO.add_event_detect(10,GPIO.RISING,callback=button_callback) # Setup event on pin 10 rising edge
-message = input("Press enter to quit\n\n") # Run until someone presses enter
-GPIO.cleanup() # Clean up
-
-
+Change both “0” to “1” and then save the file. That’s it!
