@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
 
+import json
 from pygame import mixer
 import RPi.GPIO as GPIO
+import sys
 
 def button_callback(channel):
-    print("Button was pushed!")
-    mixer.music.load("sounds/kaamelott/compote.mp3")
-    mixer.music.play()
+	print(channel)
+	mixer.music.load(sounds[str(channel)])
+	mixer.music.play()
 
-mixer.init()
+if len(sys.argv) == 2:
+	with open(sys.argv[1], 'r') as f:
+		sounds = json.load(f)
 
-GPIO.setwarnings(False) # Ignore warning for now
-GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
-GPIO.setup(10, GPIO.IN, GPIO.PUD_UP) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
-GPIO.add_event_detect(10, GPIO.FALLING, callback=button_callback) # Setup event on pin 10 rising edge
+	mixer.init()
 
-message = input("Press enter to quit\n\n") # Run until someone presses enter
+	GPIO.setwarnings(False) # Ignore warning for now
+	GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
 
-GPIO.cleanup() # Clean up
+	for gpio in sounds:
+		GPIO.setup(int(gpio), GPIO.IN, GPIO.PUD_UP)
+		GPIO.add_event_detect(int(gpio), GPIO.FALLING, callback=button_callback, bouncetime=500)
+
+	message = input("Press enter to quit\n\n") # Run until someone presses enter
+
+	GPIO.cleanup() # Clean up
