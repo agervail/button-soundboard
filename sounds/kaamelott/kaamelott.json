@@ -1,4 +1,26 @@
 {
+	"3":  "sounds/kaamelott/a_kadoc.mp3",
+	"5":  "sounds/kaamelott/a_la_volette1.mp3",
+	"7":  "sounds/kaamelott/bucher3.mp3",
 	"8":  "sounds/kaamelott/2_3_poils_de_Q.mp3",
-	"10": "sounds/kaamelott/compote.mp3"
+	"10": "sounds/kaamelott/compote.mp3",
+	"11": "sounds/kaamelott/ah_le_printemps_on_crame_des_mecs.mp3",
+	"12": "sounds/kaamelott/ca_vous_ennuie_si_je_vomis.mp3",
+	"13": "sounds/kaamelott/chui_un_marteau_moi.mp3",
+	"15": "sounds/kaamelott/cuillere_2.mp3",
+	"16": "sounds/kaamelott/des_pedales_ils_disent_sur_le_message.mp3",
+	"18": "sounds/kaamelott/deux_trous_du_cul_soient_plus_efficaces_qu_un_seul.mp3",
+	"19": "sounds/kaamelott/gras_du_cul.mp3",
+	"21": "sounds/kaamelott/interprete.mp3",
+	"22": "sounds/kaamelott/je_ne_mange_pas_de_graines.mp3",
+	"23": "sounds/kaamelott/mettre_du_beurre_au_fond_du_plat.mp3",
+	"24": "sounds/kaamelott/on_en_a_gros.mp3",
+	"26": "sounds/kaamelott/on_plaisante_on_plaisante.mp3",
+	"29": "sounds/kaamelott/pique_diagonale.mp3",
+	"31": "sounds/kaamelott/quequette.mp3",
+	"32": "sounds/kaamelott/soupcon_gros_nul.mp3",
+	"33": "sounds/kaamelott/tout_le_monde_s_en_branle_moi_le_premier.mp3",
+	"35": "sounds/kaamelott/wooouuuhouhouhou_c_est_mortel.mp3",
+	"36": "sounds/kaamelott/ya_pas_un_pigeon_pour_envoyer_un_message.mp3",
+	"37": "sounds/kaamelott/zut_la.mp3"
 }
