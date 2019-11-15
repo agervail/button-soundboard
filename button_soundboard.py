@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+from time import sleep
 from pygame import mixer
 import RPi.GPIO as GPIO
 import sys
@@ -39,6 +40,6 @@ if len(sys.argv) >= 2:
 				GPIO.add_event_detect(int(gpio), GPIO.FALLING, callback=button_callback, bouncetime=500)
 				used_gpios.append(int(gpio))
 
-	message = input("Press enter to quit\n\n") # Run until someone presses enter
-
+	while(not sleep(5)):
+		pass
 	GPIO.cleanup() # Clean up
