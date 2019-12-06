@@ -20,7 +20,9 @@ Find you IP (local) here it is 192.168.0.XXX sometimes it's 192.168.1.XXX
 
 Launch that command before and after you connect the raspi to the network
 
-`sudo nmap -sP 192.168.0.0/24 | awk '/^Nmap/{ip=$NF}/B8:27:EB/{print ip}'`
+`sudo nmap -sP 192.168.0.0/24 | awk '/^Nmap/{ip=$NF}/C4:6E:1F/{print ip}'`
+
+The Mac address is the address of the wifi usb link, that's why it's different from normal raspi
 
 Find the new IP, congrats, it's your raspi !
 
@@ -49,3 +51,9 @@ defaults.ctl.card 0
 defaults.pcm.card 0
 
 Change both “0” to “1” and then save the file. That’s it!
+
+You then need to install the service that runs the program at startup, to do that run :
+
+`sudo cp button-soundboard.service /etc/systemd/system/`
+`sudo systemctl start button-soundboard`
+
