@@ -5,7 +5,7 @@ Description=Best service on earth
 User=pi
 Type=simple
 WorkingDirectory=/home/pi/workspace/button-soundboard/
-ExecStart=/home/pi/workspace/button-soundboard/button_soundboard.py /home/pi/workspace/button-soundboard/sounds/kaamelott/kaamelott.json /home/pi/workspace/button-soundboard/sounds/dikkenek/dikkenek.json /home/pi/workspace/button-soundboard/sounds/oss117/oss117.json /home/pi/workspace/button-soundboard/sounds/la_classe_americaine/la_classe_americaine.json
+ExecStart=/home/pi/workspace/button-soundboard/button_soundboard.py
 Restart=always
 RestartSec=1
 
