@@ -18,7 +18,7 @@ def button_callback(channel):
 
     if (channel == special_button_1 and not GPIO.input(special_button_2)) or (channel == special_button_2 and not GPIO.input(special_button_1)):
         current_sounds_bank += 1
-        current_sounds_bank %= len(sounds_banks) - 1
+        current_sounds_bank %= len(sounds_banks)
     else:
         print(channel)
         mixer.music.load(sounds[current_sounds_bank][str(channel)])
