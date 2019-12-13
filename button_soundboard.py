@@ -36,11 +36,15 @@ def button_callback(channel):
     if (channel == special_button_1 and not GPIO.input(special_button_2)) or (channel == special_button_2 and not GPIO.input(special_button_1)):
         current_sounds_bank += 1
         current_sounds_bank %= len(sounds_banks)
+        print('Changing to sound bank : ', current_sounds_bank)
     else:
-        print(channel)
         if channel in sounds[current_sounds_bank]:
             mixer.music.load(sounds[current_sounds_bank][channel])
             mixer.music.play()
+            print(channel)
+        else:
+            print('No sound assigned to channel : ', channel)
+
 
 sounds_bank_path = 'sounds'
 sounds_banks = os.listdir(sounds_bank_path)
@@ -56,6 +60,7 @@ for gpio in gpios_order:
     GPIO.setup(int(gpio), GPIO.IN, GPIO.PUD_UP)
     GPIO.add_event_detect(int(gpio), GPIO.FALLING, callback=button_callback, bouncetime=500)
 
+print('GPIOS initialized')
 
 while(not sleep(5)):
     pass
